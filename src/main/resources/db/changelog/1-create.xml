@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1-create" author="av.mihailov.dev">
+        <sql>
+            create table main_entity(
+                id serial primary key,
+                name text not null
+            );
+            create table slave_entity(
+                id serial primary key,
+                name text not null,
+                main_name text not null
+            );
+            insert into main_entity(id, name) values (1, 'Test Main Name');
+            insert into slave_entity (id, name, main_name) values (1, 'Test Slave Name', 'Test Main Name')
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
